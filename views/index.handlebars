@@ -7,10 +7,30 @@
       <li class="active"><a href="#">Home</a></li>
       <li><a href="#">Save Article</a></li>
     </ul>
-    <button class="btn btn-danger navbar-btn">Scrape</button>
+    <button id="scrape" class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#myModal">Scrape</button>
   </div>
 </nav>
 <div class="container">
+  <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
   <div id="wrapper">
     <h1>New York Times Article Scraper</h1>
     <h2><i>Click "Scrape" to get new Articles.</i></h2>

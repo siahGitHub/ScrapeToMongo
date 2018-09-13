@@ -70,3 +70,18 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+// When you click the savenote button
+$(document).on("click", "#scrape", function() {
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+  })
+    // With that done
+    .then(function(data) {
+      // Log the response
+      $("#modal-body").append("<p>"+ data + "</p>")
+      console.log(data);
+    });
+  });

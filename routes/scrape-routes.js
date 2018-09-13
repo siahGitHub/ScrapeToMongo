@@ -16,11 +16,12 @@ module.exports = function (app) {
     request("https://www.nytimes.com/", function (error, response, html) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(html);
-
+      var articleCount =0;
       // Now, we grab every h2 within an article tag, and do the following:
       $("article div div a div").each(function (i, element) {
         // Save an empty result object
-        //var $ref = $(this).parent().attr("href");
+        
+       
         var $h2 = $(this).children("h2");
         var p1Text = $h2.parent().parent().next().children("p").text();
         var p2Text = $h2.parent().next("p").text();
@@ -37,9 +38,10 @@ module.exports = function (app) {
             if (p2Text) result.summary = p2Text;
             if ($ref) result.link = $ref;
             console.log(result);
+            articleCount= articleCount++;
           };
         };
-
+        
         // Create a new Article using the `result` object built from scraping
 
         db.Article.create(result)
@@ -53,9 +55,14 @@ module.exports = function (app) {
           });
 
       });
-
+      var hbsObject = {
+        count: articleCount
+      };
       // If we were able to successfully scrape and save an Article, send a message to the client
-      res.send("Scrape Complete");
+      //res.send("Scrape Complete");
+      //res.render("index",hbsObject);
+      console.log(articleCount);
+      res.json(articleCount);
     });
   });
   
