@@ -1,8 +1,22 @@
-<div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">New York Times Article Scraper</a>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="app.js"></script>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Save Article</a></li>
+    </ul>
+    <button class="btn btn-danger navbar-btn">Scrape</button>
+  </div>
+</nav>
+<div class="container">
+  <div id="wrapper">
+    <h1>New York Times Article Scraper</h1>
+    <h2><i>Click "Scrape" to get new Articles.</i></h2>
+    <div id="articles"></div>
+    <div id="notes"></div>
+  </div>
+</div>
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+<script src="app.js"></script>
