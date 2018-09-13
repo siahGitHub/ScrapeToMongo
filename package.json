@@ -1,0 +1,30 @@
+{
+  "name": "ScrapeToMongo",
+  "version": "1.0.0",
+  "description": "Node application that scrapes data from a website and stores in a Mongo Database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siahGitHub/ScrapeToMongo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siahGitHub/ScrapeToMongo/issues"
+  },
+  "homepage": "https://github.com/siahGitHub/ScrapeToMongo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.2.14",
+    "mongoose-unique-validator": "^2.0.1",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
+  }
+}
