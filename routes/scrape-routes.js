@@ -10,7 +10,7 @@ var db = require("../models");
 
 module.exports = function(app) {
   // A GET route for scraping the echoJS website
-app.get("/scrape", function(req, res) {
+ app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   //request("http://www.echojs.com/", function(error, response, html) {
   request("https://www.nytimes.com/", function(error, response, html) {
@@ -18,21 +18,30 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(html);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    //$("article h2").each(function(i, element) {
-    $("article div div").each(function(i, element) {
+    $("article div div a div").each(function(i, element) {
       // Save an empty result object
-      var result = {};
+      //var $ref = $(this).parent().attr("href");
+      var $h2 = $(this).children("h2");
+      var p1Text = $h2.parent().parent().next().children("p").text();
+      var p2Text = $h2.parent().next("p").text();
+      var h2Text = $h2.text();
+      var $ref = $h2.parent().parent().attr("href");
+     
+      if (h2Text) {
+        
+        if (p1Text || p2Text) {
 
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this)
-        .children("span.balancedHeadline")
-        .text();
-      result.link = $(this)
-        .children()
-        .attr("href");
-console.log(result.link);
+          var result = {};
+          result.title = h2Text;
+          if (p1Text) result.summary = p1Text;
+          if (p2Text) result.summary = p2Text;
+          if ($ref) result.link = $ref;
+          console.log(result);
+        };
+      };
+      
       // Create a new Article using the `result` object built from scraping
-      /*
+      
       db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
@@ -42,11 +51,10 @@ console.log(result.link);
           // If an error occurred, send it to the client
           return res.json(err);
         });
-        */
+      
     });
 
     // If we were able to successfully scrape and save an Article, send a message to the client
-    //res.render("index", "Scrape Complete");
     res.send("Scrape Complete");
   });
 });
